@@ -1,4 +1,5 @@
 #!/bin/env/ bash
+
 ssh_auth_sock() {
 	if [ ! -S ~/.ssh/ssh_auth_sock ]; then
 	  eval `ssh-agent`
@@ -7,3 +8,4 @@ ssh_auth_sock() {
 	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 	ssh-add -l | grep "The agent has no identities" && ssh-add
 }
+#ssh_auth_sock > /dev/null

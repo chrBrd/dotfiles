@@ -19,7 +19,7 @@ font pango:Clear Sans 10
 exec --no-startup-id nm-applet
 exec --no-startup-id /usr/lib64/polkit-gnome/polkit-gnome-authentication-agent-1
 
-#exec_always --no-startup-id xrandr --setprovideroutputsource 1 0 && xrandr --output HDMI-1-1 --auto --primary --left-of DP1 --output DVI-1-0 --auto --left-of HDMI-1-1
+exec_always xrandr --setprovideroutputsource 1 0 && xrandr --output HDMI-1-0 --mode 1280x1024 --pos 640x0 --output DVI-I-2 --mode 1920x1080 --pos 0x1024 --primary --output DVI-1-0 --mode 1280x1024 --right-of HDMI-1-0 --output HDMI-2 --mode 1920x1080 --right-of DVI-I-2
  
 ########## Keybindings ##########
 bindsym $mod+Shift+s exec i3lock -c 000000 # Easier locking
@@ -52,7 +52,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer -D pulse sset Master toggle-mu
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec gnome-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -176,7 +176,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
         position bottom
-	tray_output HDMI-1-1
+	tray_output DVI-I-2
 
         colors {
             background #404552
@@ -202,15 +202,15 @@ for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [title="Preferences$"] floating enable
 
-workspace 1 output HDMI-1-1
-workspace 2 output DP1
-workspace 4 output DP1
-workspace 6 output DP1
-workspace 8 output DP1
-workspace 3 output DVI-1-0
-workspace 5 output DVI-1-0
-workspace 7 output DVI-1-0
-workspace 9 output DVI-1-0
+workspace 1 output DVI-I-2
+workspace 2 output HDMI-2
+workspace 3 output HDMI-1-0
+workspace 4 output DVI-1-0
+#workspace 6 output HDMI-2
+#workspace 8 output HDMI-2
+#workspace 5 output DVI-1-0
+#workspace 7 output DVI-1-0
+#workspace 9 output DVI-1-0
 
 #focus_follows_mouse no 
 #smart_gaps on
@@ -220,14 +220,16 @@ workspace 9 output DVI-1-0
 assign [class="jetbrains"] 1
 assign [class="chrome"] 2
 assign [class="^Slack$"] 4
-assign [class="^Thunderbird$"] 5
+
+assign [class="Firefox"] 2
+#assign [class="^Thunderbird$"] 5
 
 exec redshift-gtk & 
-exec slack &
-exec /opt/google/chrome-unstable/google-chrome-unstable &
-exec thunderbird & 
+#exec slack &
+#exec /opt/google/chrome-unstable/google-chrome-unstable &
+#exec thunderbird & 
 
-exec phpstorm 
+#exec phpstorm 
 
-exec i3-msg "Workspace 3; exec gnome-terminal -e tmux a; Workspace 1" &
+#exec i3-msg "Workspace 3; exec gnome-terminal -e tmux a; Workspace 1" &
 
