@@ -8,4 +8,4 @@ ssh_auth_sock() {
 	export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 	ssh-add -l | grep "The agent has no identities" && ssh-add
 }
-ssh_auth_sock > /dev/null
+#ssh_auth_sock > /dev/null
