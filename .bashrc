@@ -2,6 +2,9 @@
 
 for file in ~/.bashrc.d/*;
 do
-	source $file
+	if [[ $file == *.bashrc ]]
+	then	
+		source $file
+	fi
 done
 
